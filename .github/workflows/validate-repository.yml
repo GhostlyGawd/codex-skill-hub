@@ -1,0 +1,42 @@
+name: Repository governance
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repository-governance-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-governance:
+    name: repository-governance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run validator tests
+        run: python -m unittest discover -s tests/repository_validation -v
+
+      - name: Validate pull request
+        if: github.event_name == 'pull_request'
+        run: python tools/validate_repository.py --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}"
+
+      - name: Validate default branch
+        if: github.event_name == 'push'
+        run: python tools/validate_repository.py --all
