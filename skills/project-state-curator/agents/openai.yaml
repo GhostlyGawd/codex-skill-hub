@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project State Curator"
+  short_description: "Keep multi-step project state current"
+  default_prompt: "Use $project-state-curator to reconcile and update the current project state."
