@@ -16,4 +16,4 @@ Updated: 2026-09-04
 | Later | 9 | `docs-code-consistency-checker` | Compare documentation with code and commands. | Backlog | — | — | — |
 | Later | 10 | `safe-data-migration-planner` | Plan migration, rollback, and validation steps. | Backlog | — | — | — |
 
-Governance evidence: `feat/repository-governance` exists from verified `main` commit `75d57ec8a52f49eadd007fb7206880f27c7884aa`. Inspection found no active protection, required check, or repository ruleset on `main`. Status stays `Blocked` until an active rule is configured and verified.
+Governance evidence: feature commit `2d2bec66099d6b6e70ce5541a3df05c82dbb3ae4` with tree `c9cba765815c5ff8f22eb9f179e5d5ded454e7dc` is in [ready pull request 2](https://github.com/GhostlyGawd/codex-skill-hub/pull/2). Workflow run `33913148787` completed successfully. The pull request is not merged. Status stays `Blocked` because `main` has no active protection or required check.

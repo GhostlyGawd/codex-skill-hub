@@ -1,6 +1,6 @@
 # Repository Governance and Artifact Synchronization — Implementation Task List
 
-Version: 0.7  
+Version: 0.8  
 Status: Validated  
 Date: 2026-09-04  
 Work ID: `repository-governance`
@@ -10,10 +10,11 @@ Specification: [Specification version 0.2](../../specs/repository-governance/spe
 Earlier task-list validation: [Version 0.2 validation](../../validations/repository-governance/2026-09-04-02-task-list.md)  
 Version 0.3 task-list validation: [Passing report](../../validations/repository-governance/2026-09-04-04-task-list.md)  
 Failed version 0.4 task-list validation: [T6 report](../../validations/repository-governance/2026-09-04-06-task-list.md)  
-Latest task-list validation: [Version 0.5 validation](../../validations/repository-governance/2026-09-04-07-task-list.md)  
+Version 0.5 task-list validation: [Passing report](../../validations/repository-governance/2026-09-04-07-task-list.md)  
 Failed version 0.6 task-list validation: [T7 report](../../validations/repository-governance/2026-09-04-08-task-list.md)  
+Latest task-list validation: [Version 0.7 validation](../../validations/repository-governance/2026-09-04-09-task-list.md)  
 Failed implementation validations: [First report](../../validations/repository-governance/2026-09-04-03-implementation.md) and [V4 report](../../validations/repository-governance/2026-09-04-05-implementation.md)  
-Task-list validation: [Version 0.7 validation](../../validations/repository-governance/2026-09-04-09-task-list.md)
+Task-list validation: [Version 0.8 validation](../../validations/repository-governance/2026-09-04-10-task-list.md)
 
 ## Execution controls
 
@@ -71,6 +72,16 @@ This version responds to blocking finding T7 and records the live read-only insp
 - Set task 1.3 to `Done` and task 1.4 to `Ready`.
 - Keep task 6.5 and V3 blocked because no exposed tool can configure the missing rule.
 - Keep tasks 2.1 and later `Pending`.
+
+## Version 0.8 reconciliation
+
+This version records live feature-branch delivery evidence without claiming merge or branch protection.
+
+- Record feature commit `2d2bec66099d6b6e70ce5541a3df05c82dbb3ae4` and tree `c9cba765815c5ff8f22eb9f179e5d5ded454e7dc`.
+- Record ready pull request 2 and successful workflow run `33913148787`, run number 1.
+- Keep tasks 6.2 through 6.4 `Pending` because their formal dependency chain is not complete. The output evidence is provisional until tasks 1.4 through 6.1 pass in order.
+- Do not claim a merge, active branch rule, required-check rule, direct-push block, or default-branch run.
+- Keep task 6.5, V3, backlog, and roadmap `Blocked`.
 
 ## Status model
 
@@ -168,11 +179,11 @@ Checkpoint F: The repository can enforce the rules locally and in GitHub Actions
 | ID | Task | Output | Verification | Depends on | Status | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
 | 6.1 | Review the candidate diff and record the exact validation commands and results. | Diff scope, commands, UTC time, exit codes, and result summaries in this task's `Evidence` cell | The diff contains only governance work and migrated planning artifacts. All local checks pass. | 5.4 | Pending | Local candidate files are limited to governance controls and migrated planning evidence. Full-tree validation and 18 tests pass. Git diff proof waits for the feature branch because this workspace has no `.git` metadata. |
-| 6.2 | Commit and push the reviewed candidate only to the governance feature branch. | Remote branch name and candidate commit SHA in this task's `Evidence` cell | The remote branch contains the reviewed tree and is based on the recorded default-branch head or has been safely updated without overwriting unrelated work. | 6.1 | Pending | Candidate commit is not recorded. |
-| 6.3 | Open a ready pull request with the required body fields. | Pull-request number and URL in this task's `Evidence` cell | The pull request is not a draft. Its body identifies the work ID, change classes, scope, specification, tasks, validation, status changes, and residual risks. | 6.2 | Pending | Pull request is not open. |
-| 6.4 | Verify the pull-request workflow and stable check name on GitHub. | Workflow run ID, URL, base SHA, head SHA, and check result in this task's `Evidence` cell | The pull request run completes, uses the expected base and head commits, and exposes `repository-governance`. | 6.3 | Pending | No governance workflow run exists. |
+| 6.2 | Commit and push the reviewed candidate only to the governance feature branch. | Remote branch name and candidate commit SHA in this task's `Evidence` cell | The remote branch contains the reviewed tree and is based on the recorded default-branch head or has been safely updated without overwriting unrelated work. | 6.1 | Pending | Provisional live output: branch `feat/repository-governance` has commit `2d2bec66099d6b6e70ce5541a3df05c82dbb3ae4` and tree `c9cba765815c5ff8f22eb9f179e5d5ded454e7dc`. Formal completion waits for task 6.1 and base/head validation. |
+| 6.3 | Open a ready pull request with the required body fields. | Pull-request number and URL in this task's `Evidence` cell | The pull request is not a draft. Its body identifies the work ID, change classes, scope, specification, tasks, validation, status changes, and residual risks. | 6.2 | Pending | Provisional live output: ready, non-draft pull request 2 exists at `https://github.com/GhostlyGawd/codex-skill-hub/pull/2`. Formal completion waits for task 6.2 and verification of all required body fields. |
+| 6.4 | Verify the pull-request workflow and stable check name on GitHub. | Workflow run ID, URL, base SHA, head SHA, and check result in this task's `Evidence` cell | The pull request run completes, uses the expected base and head commits, and exposes `repository-governance`. | 6.3 | Pending | Provisional live output: workflow `Repository governance`, run ID `33913148787`, run number 1, completed with result `success`. Formal completion waits for task 6.3 and evidence for the exact base SHA, head SHA, and stable check name. |
 | 6.5 | Configure the minimum required protection for the exact recorded default branch, preserve all stronger existing controls, and inspect the result. Do not delete or weaken an existing rule. | Before-and-after rule identifiers, required checks, UTC time, and read-only inspection source in this task's `Evidence` cell | The active rule requires `repository-governance`, requires a pull request, blocks direct pushes that bypass the check, and preserves every stronger control recorded in task 1.3. | 6.4 | Blocked | Blocker: inspection proved that no active rule protects `main`, and no branch-rule mutation tool is exposed. An administrator or authorized GitHub tool must configure the narrow rule and provide read-back evidence. |
-| 6.6 | Revalidate the complete implementation with an independent subagent. Preserve both failed reports. | `docs/validations/repository-governance/2026-09-04-10-implementation.md` | The new report identifies the validated tree, method, scope, evidence, result, findings, branch-rule evidence, closure of V1–V4, T6, T7, and every residual risk in specification section 23. Result is `Pass` or `Pass with residual risk` with no blocking finding. | 6.5 | Pending | Reports `2026-09-04-03-implementation.md` and `2026-09-04-05-implementation.md` are immutable failures. Revalidation waits for version 0.7 task-list validation and live enforcement evidence. |
+| 6.6 | Revalidate the complete implementation with an independent subagent. Preserve both failed reports. | `docs/validations/repository-governance/2026-09-04-11-implementation.md` | The new report identifies the validated tree, method, scope, evidence, result, findings, branch-rule evidence, closure of V1–V4, T6, T7, and every residual risk in specification section 23. Result is `Pass` or `Pass with residual risk` with no blocking finding. | 6.5 | Pending | Reports `2026-09-04-03-implementation.md` and `2026-09-04-05-implementation.md` are immutable failures. Revalidation waits for version 0.8 task-list validation and live enforcement evidence. |
 | 6.7 | Reconcile proposed final status across `STATE.md`, `BACKLOG.md`, `ROADMAP.md`, the governance specification, and this task list. Run the full local checks again. | Proposed post-merge canonical state | Governance is `Done`/`Complete`/`Implemented` as applicable; all task rows are `Done` with evidence; links select the newest passing reports; the next action starts `bug-repro-builder`; tests pass; and `--all` exits 0. | 6.6 | Pending | Final status depends on passing implementation validation. |
 
 Checkpoint G: The proposed final state is synchronized, independently validated, and protected by an active GitHub rule. Local checks pass.

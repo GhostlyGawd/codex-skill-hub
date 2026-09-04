@@ -22,14 +22,14 @@ Implement and validate repository governance for `GhostlyGawd/codex-skill-hub`.
 ## Work status
 
 - `project-state-curator`: Done on `main` at commit `75d57ec8a52f49eadd007fb7206880f27c7884aa`.
-- `repository-governance`: Branch `feat/repository-governance` was created from verified `main` commit `75d57ec8a52f49eadd007fb7206880f27c7884aa`. Inspection found that `main` is not protected, has no required checks, and has no repository ruleset. Full enforcement remains blocked because no exposed tool can configure the required rule.
+- `repository-governance`: Feature commit `2d2bec66099d6b6e70ce5541a3df05c82dbb3ae4` with tree `c9cba765815c5ff8f22eb9f179e5d5ded454e7dc` is on `feat/repository-governance`. Ready pull request 2 is open, and workflow run `33913148787` completed successfully. No merge occurred. Full enforcement remains blocked because `main` has no active rule and no exposed tool can configure it.
 - `bug-repro-builder` and `change-impact-mapper`: Backlog.
 
 ## Blockers and open questions
 
 - No active rule protects `main`: the branch reports `protected: false`, protection reports disabled, required checks are empty, and repository rulesets are empty. The classic protection-detail request returned 403, but this does not replace the available no-rule evidence.
 - Branch-rule mutation is not available in this workspace. An administrator or an authorized GitHub tool must require `repository-governance` on `main` and block direct unvalidated pushes.
-- The ready pull request, workflow run, required-check result, and post-merge result still need live GitHub evidence.
+- Pull request 2 is ready and its workflow run succeeded. The exact required-check rule and direct-push block are still absent. No post-merge evidence exists because the pull request is not merged.
 
 ## Key artifacts
 
@@ -38,10 +38,11 @@ Implement and validate repository governance for `GhostlyGawd/codex-skill-hub`.
 - [Governance specification](docs/specs/repository-governance/spec.md)
 - [Governance task list](docs/plans/repository-governance/tasks.md)
 - [Repository validator](tools/validate_repository.py)
+- [Ready pull request 2](https://github.com/GhostlyGawd/codex-skill-hub/pull/2)
 
 ## Next action
 
-Have an administrator or authorized GitHub tool configure the required `main` rule, then inspect the rule and record its required check and direct-push controls.
+Have an administrator or authorized GitHub tool configure the required `main` rule. Then inspect the rule before any merge and confirm that it requires `repository-governance` and blocks direct unvalidated pushes.
 
 ## Last updated
 

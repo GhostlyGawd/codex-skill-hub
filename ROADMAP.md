@@ -2,7 +2,7 @@
 
 Current batch: Governance prerequisite, then Batch 1.
 
-The governance feature branch exists from verified `main` commit `75d57ec8a52f49eadd007fb7206880f27c7884aa`. Inspection found no active `main` rule or required check. The governance item stays `Blocked` at the rule-configuration gate.
+Ready pull request 2 contains feature commit `2d2bec66099d6b6e70ce5541a3df05c82dbb3ae4`, and workflow run `33913148787` succeeded. The pull request is not merged. The governance item stays `Blocked` at the `main` rule-configuration gate.
 
 | Batch | Order | Work ID | Status | Specification |
 | --- | --- | --- | --- | --- |
