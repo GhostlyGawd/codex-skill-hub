@@ -1,20 +1,24 @@
 # Repository Governance and Artifact Synchronization — Implementation Task List
 
-Version: 0.8  
+Version: 0.9  
 Status: Validated  
 Date: 2026-09-04  
 Work ID: `repository-governance`
 
-Specification: [Specification version 0.2](../../specs/repository-governance/spec.md)
+Specification: [Specification version 0.3](../../specs/repository-governance/spec.md)
 
 Earlier task-list validation: [Version 0.2 validation](../../validations/repository-governance/2026-09-04-02-task-list.md)  
 Version 0.3 task-list validation: [Passing report](../../validations/repository-governance/2026-09-04-04-task-list.md)  
 Failed version 0.4 task-list validation: [T6 report](../../validations/repository-governance/2026-09-04-06-task-list.md)  
 Version 0.5 task-list validation: [Passing report](../../validations/repository-governance/2026-09-04-07-task-list.md)  
 Failed version 0.6 task-list validation: [T7 report](../../validations/repository-governance/2026-09-04-08-task-list.md)  
-Latest task-list validation: [Version 0.7 validation](../../validations/repository-governance/2026-09-04-09-task-list.md)  
+Historical version 0.7 task-list validation: [Passing report](../../validations/repository-governance/2026-09-04-09-task-list.md)  
 Failed implementation validations: [First report](../../validations/repository-governance/2026-09-04-03-implementation.md) and [V4 report](../../validations/repository-governance/2026-09-04-05-implementation.md)  
-Task-list validation: [Version 0.8 validation](../../validations/repository-governance/2026-09-04-10-task-list.md)
+Historical task-list validation: [Version 0.8 validation](../../validations/repository-governance/2026-09-04-10-task-list.md)
+
+Supplemental validation: [Version 0.3 specification and version 0.9 task-list preflight review](../../validations/repository-governance/2026-09-04-12-specification-task-list-preflight.md)
+
+The version 0.8 plan retains its historical validation. The bounded version 0.9 amendment passed the linked independent scoped review. This document is `Validated`, not `Complete`. Existing task IDs, dependencies, and statuses remain unchanged. Supplemental checklist completion is reviewed manually; the current validator does not parse its bullet statuses.
 
 ## Execution controls
 
@@ -85,6 +89,8 @@ This version records live feature-branch delivery evidence without claiming merg
 
 ## Status model
 
+Version 0.9 adds the supplemental checklist below and corrects obsolete current evidence in tasks 2.1, 6.1, and 6.6. Local preparation and historical passing checks do not close the live V3 blocker. Earlier version sections describe historical changes, not current authorization to bypass the preflight.
+
 | Status | Meaning |
 | --- | --- |
 | `Pending` | An earlier task must finish first. |
@@ -97,7 +103,7 @@ This version records live feature-branch delivery evidence without claiming merg
 
 | ID | Task | Output | Verification | Depends on | Status | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0.1 | Write the repository-governance specification. | `docs/specs/repository-governance/spec.md` version 0.2 | The file contains the approved scope, rules, failure behavior, and acceptance criteria. | None | Done | Specification version 0.2 exists at the output path. |
+| 0.1 | Write the repository-governance specification. | `docs/specs/repository-governance/spec.md` version 0.2 | The file contains the approved scope, rules, failure behavior, and acceptance criteria. | None | Done | Historical baseline version 0.2 passed report 01; the current file extends that baseline with version 0.3 section 24, reviewed separately in report 12. |
 | 0.2 | Validate the specification with an independent subagent. | `docs/validations/repository-governance/2026-09-04-01-specification.md` | The report has result `Pass with residual risk` and has no blocking finding. | 0.1 | Done | The report identifies the evaluator, method, corrections, evidence, and three residual risks. |
 | 0.3 | Decompose the validated specification into ordered implementation work. | Initial `docs/plans/repository-governance/tasks.md` version 0.1 | Every implementation area in specification sections 7 through 22 has an output, dependency, and observable verification. | 0.2 | Done | Version 0.1 contained the required task columns, checkpoints, critical path, and delivery gates. |
 | 0.4 | Validate this task list with an independent subagent and record demonstrated defects. | `docs/validations/repository-governance/2026-09-04-02-task-list.md` | The report identifies the corrected task-list version 0.2, has result `Pass` or `Pass with residual risk`, and has no blocking finding. | 0.3 | Done | The independent report validates version 0.2 after four narrow corrections and has no blocking finding. |
@@ -120,7 +126,7 @@ Checkpoint B: The work uses a current branch, the initial external-rule state is
 
 | ID | Task | Output | Verification | Depends on | Status | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| 2.1 | Create the canonical current-state file from the external state input. Remove stale facts. | `STATE.md` | The file has all required sections, identifies governance as active work, records that `project-state-curator` is merged, and does not show repository selection as a current blocker. | 1.4 | Pending | Local output is prepared and passes `--all`; formal completion waits for blocked task 1.3. |
+| 2.1 | Create the canonical current-state file from the external state input. Remove stale facts. | `STATE.md` | The file has all required sections, identifies governance as active work, records that `project-state-curator` is merged, and does not show repository selection as a current blocker. | 1.4 | Pending | Local output is prepared and passed `--all` in report 11. Task 1.3 is complete; formal completion waits for verification of task 1.4. Live enforcement remains blocked separately at task 6.5. |
 | 2.2 | Create the canonical backlog from the external backlog input. | `BACKLOG.md` | The table has every required column and one unique row per work ID. `project-state-curator` is `Done`; Batch 1 keeps `bug-repro-builder` and `change-impact-mapper` at evidence-based statuses. | 2.1 | Pending | Local output is prepared: the completed skill is `Done`, both later Batch 1 skills are `Backlog`, and governance is `Blocked`. |
 | 2.3 | Create the canonical roadmap and batch completion rules. | `ROADMAP.md` | Each row has the required columns; each status derives from `BACKLOG.md`; Batch 1 order is preserved; and each batch has a completion rule. | 2.2 | Pending | Local output is prepared and its status mapping passes `--all`. |
 | 2.4 | Import and reconcile the `project-state-curator` specification. | `docs/specs/project-state-curator/spec.md` | Metadata is canonical, status agrees with the merged implementation, the obsolete repository dependency is historical or removed from current status, and links point to the task list, skill, evaluation, and validation evidence. | 2.3 | Pending | Local version 1.0 is prepared with `Implemented` status and links to tasks, skill, evaluation, and three reports. |
@@ -178,15 +184,27 @@ Checkpoint F: The repository can enforce the rules locally and in GitHub Actions
 
 | ID | Task | Output | Verification | Depends on | Status | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| 6.1 | Review the candidate diff and record the exact validation commands and results. | Diff scope, commands, UTC time, exit codes, and result summaries in this task's `Evidence` cell | The diff contains only governance work and migrated planning artifacts. All local checks pass. | 5.4 | Pending | Local candidate files are limited to governance controls and migrated planning evidence. Full-tree validation and 18 tests pass. Git diff proof waits for the feature branch because this workspace has no `.git` metadata. |
-| 6.2 | Commit and push the reviewed candidate only to the governance feature branch. | Remote branch name and candidate commit SHA in this task's `Evidence` cell | The remote branch contains the reviewed tree and is based on the recorded default-branch head or has been safely updated without overwriting unrelated work. | 6.1 | Pending | Provisional live output: branch `feat/repository-governance` has commit `2d2bec66099d6b6e70ce5541a3df05c82dbb3ae4` and tree `c9cba765815c5ff8f22eb9f179e5d5ded454e7dc`. Formal completion waits for task 6.1 and base/head validation. |
+| 6.1 | Review the candidate diff and record the exact validation commands and results. | Diff scope, commands, UTC time, exit codes, and result summaries in this task's `Evidence` cell | The diff contains only governance work and migrated planning artifacts. All local checks pass. | 5.4 | Pending | Report 11 records a passing full-tree check and two passing 30-test runs for its identified candidate. The feature branch and ready PR 2 exist. This local directory has no `.git` metadata, so exact current base/head diff evidence must come from authorized GitHub inspection and the current workflow. Formal completion still waits for task 5.4; earlier results do not validate later amendments. |
+| 6.2 | Commit and push the reviewed candidate only to the governance feature branch. | Remote branch name and candidate commit SHA in this task's `Evidence` cell | The remote branch contains the reviewed tree and is based on the recorded default-branch head or has been safely updated without overwriting unrelated work. | 6.1 | Pending | Historical snapshot in report 11: feature commit `2d2bec66099d6b6e70ce5541a3df05c82dbb3ae4`, tree `c9cba765815c5ff8f22eb9f179e5d5ded454e7dc`. Use [live PR 2](https://github.com/GhostlyGawd/codex-skill-hub/pull/2) for the current head; this snapshot is not later-head evidence. Formal completion waits for task 6.1 and current base/head validation. |
 | 6.3 | Open a ready pull request with the required body fields. | Pull-request number and URL in this task's `Evidence` cell | The pull request is not a draft. Its body identifies the work ID, change classes, scope, specification, tasks, validation, status changes, and residual risks. | 6.2 | Pending | Provisional live output: ready, non-draft pull request 2 exists at `https://github.com/GhostlyGawd/codex-skill-hub/pull/2`. Formal completion waits for task 6.2 and verification of all required body fields. |
-| 6.4 | Verify the pull-request workflow and stable check name on GitHub. | Workflow run ID, URL, base SHA, head SHA, and check result in this task's `Evidence` cell | The pull request run completes, uses the expected base and head commits, and exposes `repository-governance`. | 6.3 | Pending | Provisional live output: workflow `Repository governance`, run ID `33913148787`, run number 1, completed with result `success`. Formal completion waits for task 6.3 and evidence for the exact base SHA, head SHA, and stable check name. |
+| 6.4 | Verify the pull-request workflow and stable check name on GitHub. | Workflow run ID, URL, base SHA, head SHA, and check result in this task's `Evidence` cell | The pull request run completes, uses the expected base and head commits, and exposes `repository-governance`. | 6.3 | Pending | Historical snapshot in report 11: workflow `Repository governance`, run `33913148787`, run number 1, succeeded for the report's named head. Use [live PR 2](https://github.com/GhostlyGawd/codex-skill-hub/pull/2) for current checks. Formal completion waits for task 6.3 and exact current base, head, and stable-check evidence; an earlier run cannot satisfy a later head. |
 | 6.5 | Configure the minimum required protection for the exact recorded default branch, preserve all stronger existing controls, and inspect the result. Do not delete or weaken an existing rule. | Before-and-after rule identifiers, required checks, UTC time, and read-only inspection source in this task's `Evidence` cell | The active rule requires `repository-governance`, requires a pull request, blocks direct pushes that bypass the check, and preserves every stronger control recorded in task 1.3. | 6.4 | Blocked | Blocker: inspection proved that no active rule protects `main`, and no branch-rule mutation tool is exposed. An administrator or authorized GitHub tool must configure the narrow rule and provide read-back evidence. |
-| 6.6 | Revalidate the complete implementation with an independent subagent. Preserve both failed reports. | `docs/validations/repository-governance/2026-09-04-11-implementation.md` | The new report identifies the validated tree, method, scope, evidence, result, findings, branch-rule evidence, closure of V1–V4, T6, T7, and every residual risk in specification section 23. Result is `Pass` or `Pass with residual risk` with no blocking finding. | 6.5 | Pending | Reports `2026-09-04-03-implementation.md` and `2026-09-04-05-implementation.md` are immutable failures. Revalidation waits for version 0.8 task-list validation and live enforcement evidence. |
+| 6.6 | Revalidate the complete implementation with an independent subagent. Preserve all earlier failed reports. | Existing `docs/validations/repository-governance/2026-09-04-11-implementation.md` and a later implementation report after V3 closure | The later report identifies the validated tree, method, scope, evidence, result, findings, branch-rule evidence, closure of V1–V4, T6, T7, and every residual risk in specification section 23. Result is `Pass` or `Pass with residual risk` with no blocking finding. | 6.5 | Pending | Report 11 exists and records local implementation Pass but overall Fail because V3 remains open. Preserve reports 03, 05, and 11. Version 0.8 task-list validation already passed in report 10. A later full implementation validation waits for live enforcement evidence and must validate the then-current exact head; supplemental amendment review does not close V3. |
 | 6.7 | Reconcile proposed final status across `STATE.md`, `BACKLOG.md`, `ROADMAP.md`, the governance specification, and this task list. Run the full local checks again. | Proposed post-merge canonical state | Governance is `Done`/`Complete`/`Implemented` as applicable; all task rows are `Done` with evidence; links select the newest passing reports; the next action starts `bug-repro-builder`; tests pass; and `--all` exits 0. | 6.6 | Pending | Final status depends on passing implementation validation. |
 
 Checkpoint G: The proposed final state is synchronized, independently validated, and protected by an active GitHub rule. Local checks pass.
+
+## Supplemental checklist — Version 0.9 preflight controls
+
+This is bounded local preparation for specification section 24. It does not renumber the existing task graph, complete a blocked dependency, or authorize external writes without the required preflight. Each item remains `Pending` until its own verification is recorded. All items must pass before the amended candidate can pass the final-head gate.
+
+- Done — P1: Review specification section 24 and this checklist with an independent subagent. Output: the design and task-review portion of the linked supplemental report. Verify the limited scope, permission stop conditions, no bypass, explicit outputs, and separation of local acceptance from V3. Dependency: none; this review gates acceptance of prepared outputs below. Evidence: report 12 records scoped design and decomposition acceptance.
+- Done — P2: Prepare and verify `AGENTS.md` and `docs/runbooks/github-enforcement-setup.md`. Check every section 24.1 instruction and the administrator procedure. Confirm that unchanged blockers cause no full test or report loop and that the runbook makes no live-enforcement claim. Dependency: P1. Evidence: report 12 maps section 24.1 to the inspected instructions and runbook.
+- Done — P3: Prepare and verify `config/main-ruleset.json`. Compare the template with the official GitHub schema and every section 24.2 setting. Preserve stronger existing controls; make no live rule mutation as part of this local step. Dependency: P2. Evidence: report 12 records independent schema comparison and six passing template tests.
+- Done — P4: Prepare `tests/repository_validation/test_ruleset_template.py`, run the template tests and existing suite, and run full-tree validation. Record commands, results, file identities, and test limits in the supplemental report. Do not present template tests as live protection or skill behavioral tests. Dependency: P3. Evidence: report 12 records the 36-test suite, full-tree check, and exact local artifact identities.
+- Done — P5: Independently validate the prepared instructions, runbook, template, test evidence, and this amended design and checklist. Complete `docs/validations/repository-governance/2026-09-04-12-specification-task-list-preflight.md` with a scoped result. Reconcile current status without closing V3. Set the specification and plan to `Validated` only after the amendment has no blocking finding. Dependency: P4. Evidence: report 12 accepts only this amendment; V3 and the original delivery task statuses remain unchanged.
+
+The supplemental report can contain the sequential design review and output verification as separate scoped sections before it is committed. Do not rewrite an earlier historical report or create extra reports solely to repeat an unchanged blocker.
 
 ## Delivery gates
 

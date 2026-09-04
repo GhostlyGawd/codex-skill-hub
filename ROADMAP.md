@@ -2,7 +2,7 @@
 
 Current batch: Governance prerequisite, then Batch 1.
 
-Ready pull request 2 contains feature commit `2d2bec66099d6b6e70ce5541a3df05c82dbb3ae4`, and workflow run `33913148787` succeeded. The pull request is not merged. The governance item stays `Blocked` at the `main` rule-configuration gate.
+[Ready pull request 2](https://github.com/GhostlyGawd/codex-skill-hub/pull/2) is not merged. The governance item stays `Blocked` at the `main` rule-configuration gate. The [setup runbook](docs/runbooks/github-enforcement-setup.md) and tested import template address this dependency; repository instructions require early preflight and prevent repeated work for an unchanged blocker. Batch 1's next skill still waits for verified governance delivery.
 
 | Batch | Order | Work ID | Status | Specification |
 | --- | --- | --- | --- | --- |

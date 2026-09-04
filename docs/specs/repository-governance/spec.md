@@ -1,11 +1,15 @@
 # Repository Governance and Artifact Synchronization — Specification
 
-Version: 0.2  
+Version: 0.3  
 Status: Validated  
 Date: 2026-09-04  
 Work ID: `repository-governance`
 
-Specification validation: [2026-09-04-01-specification.md](../../validations/repository-governance/2026-09-04-01-specification.md)
+Historical specification validation for version 0.2: [2026-09-04-01-specification.md](../../validations/repository-governance/2026-09-04-01-specification.md)
+
+Supplemental validation: [Version 0.3 specification and version 0.9 task-list preflight review](../../validations/repository-governance/2026-09-04-12-specification-task-list-preflight.md)
+
+The version 0.2 design retains its historical validation. Section 24 is a bounded amendment accepted by the linked independent scoped review. This document is `Validated`, not `Implemented`. No earlier implementation or enforcement result is changed by this version.
 
 Task list: [Implementation task list](../../plans/repository-governance/tasks.md)
 
@@ -514,3 +518,29 @@ The implementation is acceptable only when all these conditions are true:
 - A status update still depends on accurate evidence from the person or automation that makes the change.
 
 The implementation must record these risks in its validation report. A later control can add an independent evaluation and a periodic branch-rule audit.
+
+## 24. Capability preflight and blocked-work amendment
+
+This amendment addresses repeated attempts to continue work when GitHub enforcement cannot be configured. It adds workflow instructions and a setup template, not another status model or a replacement governance system. It does not close V3.
+
+### 24.1 Required controls
+
+- `AGENTS.md` must require a read-only capability and effective-protection check before implementation or external writes. The check must identify the repository, branch, base and head, required operations, protection evidence, and UTC time.
+- User administrator permissions must be distinguished from connector permissions and callable operations. Missing or unknown required permissions must stop the affected operation. Denied inspection must not be presented as proof of an absent rule.
+- The agent must preserve blocked state, identify the exact administrator action, and use no browser fallback, alternate credential discovery, weakened rule, or merge bypass.
+- When the user resumes blocked work, inspect the named blocker first. An unchanged external blocker must not cause full test reruns, task renumbering, plan redesign, or another validation report.
+- Evidence-only changes must keep current status and evidence consistent without changing approved scope. Changes to requirements, dependencies, acceptance criteria, or behavior require a scoped design and task update with validation. Historical reports must remain intact.
+- Ready pull requests and autonomous merge remain authorized. Merge requires successful checks on the exact current head and verified effective target-branch protection. Stronger existing controls must be preserved.
+- Structural validation and an instruction trace must not be reported as executed behavioral testing. Self-evaluation must not be reported as independent evaluation.
+
+### 24.2 Setup artifacts
+
+Provide `docs/runbooks/github-enforcement-setup.md` and `config/main-ruleset.json`. The runbook must explain the one-time administrator setup, read-back evidence, connector limitations, and GitHub plan support check. Neither artifact may claim live enforcement.
+
+The import template must target only `refs/heads/main`, use active branch enforcement, and have no exclusions or bypass actors. It must require a pull request, zero approving reviews for the new solo-workflow minimum rule, the `repository-governance` status check, strict up-to-date validation, and force-push and deletion blocks. Do not reduce a stronger existing review requirement. Do not use a repository visibility or plan change to enable enforcement without approval.
+
+### 24.3 Bounded validation and acceptance
+
+Provide `tests/repository_validation/test_ruleset_template.py`. Standard-library tests must verify the template's required target, enforcement mode, empty bypass and exclusion lists, pull-request settings, strict required check, and force-push and deletion rules. Run these tests with the existing suite. These tests prove local template content only; live read-back remains required.
+
+An independent subagent must review this amendment, the supplemental task checklist, the instructions, runbook, template, and test results. Record the scoped result in the supplemental report linked above. Preserve all earlier reports, identify validated versions or file identities, and separate local amendment acceptance from unresolved live enforcement. Full governance acceptance still requires every condition in section 22, including V3 closure and exact-head checks.

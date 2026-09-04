@@ -38,6 +38,8 @@ The validator is read-only. Exit code 0 means all required checks passed, 1 mean
 
 ## Pull requests
 
+Read [AGENTS.md](AGENTS.md) before work. Check GitHub capabilities and effective protections before implementation. If setup is missing, use the [enforcement setup runbook](docs/runbooks/github-enforcement-setup.md) and [import template](config/main-ruleset.json). The template tests verify intended settings, not live protection.
+
 Use ready pull requests. Do not use draft pull requests. Update all related status and evidence artifacts in the same pull request. The stable required check name is `repository-governance`.
 
 Do not merge if the check fails, is pending, is absent, or cannot inspect the full change. A merge does not authorize publication, deployment, or skill installation.

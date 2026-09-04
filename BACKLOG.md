@@ -16,4 +16,4 @@ Updated: 2026-09-04
 | Later | 9 | `docs-code-consistency-checker` | Compare documentation with code and commands. | Backlog | — | — | — |
 | Later | 10 | `safe-data-migration-planner` | Plan migration, rollback, and validation steps. | Backlog | — | — | — |
 
-Governance evidence: feature commit `2d2bec66099d6b6e70ce5541a3df05c82dbb3ae4` with tree `c9cba765815c5ff8f22eb9f179e5d5ded454e7dc` is in [ready pull request 2](https://github.com/GhostlyGawd/codex-skill-hub/pull/2). Workflow run `33913148787` completed successfully. The pull request is not merged. Status stays `Blocked` because `main` has no active protection or required check.
+Governance remains in [ready pull request 2](https://github.com/GhostlyGawd/codex-skill-hub/pull/2), not merged. Status stays `Blocked` because `main` has no active protection or required check. Early preflight and unchanged-blocker controls are prepared; activation requires the [one-time administrator setup](docs/runbooks/github-enforcement-setup.md). See the live PR for its current head and checks; historical successes do not satisfy a later head's merge gate.
